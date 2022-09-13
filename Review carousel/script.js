@@ -59,18 +59,20 @@ window.addEventListener('DOMContentLoaded', function() {
     showPerson(currentItem);
 })
 
-//show person based on item
+//mostrar pessoa baseado no item atual. função mostra pessoa passando como atributo a pessoa conforme seu index no array pela variavel currentItem
 function showPerson (person) {
     //variavel para começar com item 0 do array
     const item = reviews[person];
 
+    //selecioado itens conforme index da constante item acima
     img.src = item.img
     author.textContent = item.name;
     job.textContent = item.job;
     info.textContent = item.text;
 }
 
-//show next person 
+//mostrando proxima pessoa 
+//lógica: toda vez que houver click no botao proximo, variavel currentItem aumenta seu valor em 1, alterando index do array chamando a função showPerson; e, se item atual for maior que o array, item atual voltar a ter  valor 0
 nextButton.addEventListener('click', function() {
     currentItem++;
     if(currentItem > reviews.length - 1) {
@@ -79,7 +81,8 @@ nextButton.addEventListener('click', function() {
     showPerson(currentItem);
 });
 
-//show prev person
+//mostrando pessoa anterior
+//mesma logica do outro botao, porem desincrementando a variavel currentItem
 prevButton.addEventListener('click', function() {
     currentItem--;
     if (currentItem < 0) {
@@ -88,7 +91,8 @@ prevButton.addEventListener('click', function() {
     showPerson(currentItem);
 });
 
-//show random person
+//mostrando uma pessoa aleatoria
+//toda vez que houver click no botao Surprise Me, a função irá atribuir um numero aleatoria entre 0 e 3 (tamanho do array) e chamando a função showPerson;
 randomButton.addEventListener('click', function () {
     currentItem = Math.floor(Math.random() * reviews.length);
     showPerson(currentItem);
